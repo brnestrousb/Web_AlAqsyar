@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hello world</h1>
-</body>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SMK AL-AQSYAR</title>
+  </head>
+  <body>
+    <div class="w-full">
+      <nav class="shadow-slate-800 w-full h-20">
+        <div class="flex justify-center items-center bg-slate-200 p-2">
+          <div class="flex items-center w-1/2">
+            <a href="/">
+              <img
+                src="assets/logo/LOGO_AQIS_NO_BG.png"
+                alt="logo"
+                class="w-12 mr-2"
+              />
+            </a>
+            <div class="ml-2 flex flex-col">
+              <h1 class="font-bold text-sm">SEKOLAH MENENGAH KEJURUAN</h1>
+              <h1
+                class="font-bold text-2xl tracking-widest underline decoration-sky-500 decoration-solid"
+              >
+                AL-AQSYAR
+              </h1>
+              <p class="text-xs">SMART & MODERN SCHOOL FOR YOUR FUTURE</p>
+            </div>
+          </div>
+          <div class="w-full h-full p-2">
+            <ul class="flex justify-around items-center">
+              <li
+                class="hover:bg-black hover:text-white p-2 w-full text-center transition-all"
+              >
+                <a href="#">Home</a>
+              </li>
+              <li
+                class="hover:bg-black hover:text-white p-2 w-full text-center transition-all"
+              >
+                <a href="#">News</a>
+              </li>
+              <li
+                class="hover:bg-black hover:text-white p-2 w-full text-center transition-all"
+              >
+                <a href="#">Profile</a>
+              </li>
+              <li
+                class="hover:bg-black hover:text-white p-2 w-full text-center transition-all"
+              >
+                <a href="#">Gallery</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="relative w-full h-full">
+        <div
+          class="absolute top-0 left-0 w-full h-screen brightness-50 bg-center bg-cover z-[-1]"
+          style="background-image: url('/assets/bg/bg.jpeg')"
+        ></div>
+        <div class="w-full h-screen flex flex-col justify-center items-center">
+          <h1 class="text-white text-4xl font-bold">SMK AL-AQSYAR</h1>
+          <h2 class="text-white text-2xl">ISLAMIC SCHOOL</h2>
+          <p class="text-white text-center">
+            "SMART & MODERN SCHOOL FOR YOUR FUTURE"
+          </p>
+          <a
+            href="#title"
+            class="bg-sky-500 text-white p-2 mt-2 rounded-md hover:bg-sky-600"
+            >Masuk</a
+          >
+        </div>
+      </div>
+      <div class="w-1/2 bg-black h-1 mt-2 mb-2"></div>
+      <div class="w-full h-screen">
+        <div class="p-6">
+          <h1 id="title" class="text-2xl font-bold">
+            SEKOLAH MENENGAH KEJURUAN AL-AQSYAR
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+  </body>
 </html>
