@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { RegistrationsService } from './registrations.service';
-import { Registration } from './registration.entity';
+import { Registration } from './registrations.entity';
 
 @Controller('registrations')
 export class RegistrationsController {
