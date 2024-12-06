@@ -24,7 +24,7 @@ export class Registration {
   tempatLahir: string;
 
   @Column()
-  tanggalLahir: string;
+  tanggalLahir: Date;
 
   @Column()
   anakKe: number;
