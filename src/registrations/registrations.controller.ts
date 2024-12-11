@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Put, Delete, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Delete, Param, UseGuards } from '@nestjs/common';
 import { RegistrationsService } from './registrations.service';
 import { Registration } from './registrations.entity';
 import { PrismaClient } from '@prisma/client';
+import { JwtAuthGuard } from 'src/authentication/auth/guards/jwt.guard';
 
 const prisma = new PrismaClient();
 
+@UseGuards(JwtAuthGuard)
 @Controller('registrations')
 export class RegistrationsController {
   constructor(private readonly registrationsService: RegistrationsService) {}
