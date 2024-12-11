@@ -1,28 +1,31 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DatabaseModule } from './common/database.module';
-import { RegistrationsModule } from './registrations/registrations.module';
-import { Registration } from './registrations/registrations.entity';
-import { ConfigModule } from '@nestjs/config';
+import { parse } from 'pg-connection-string';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'mariadb',
-      url: process.env.DATABASE_URL,
-      host: process.env.DATABASE_HOST || 'localhost',
-      port: parseInt(process.env.DATABASE_PORT) || 3306,
-      username: process.env.DATABASE_USER || 'alaqsyar',
-      password: process.env.DATABASE_PASSWORD || 'alaqsyarislamicschool',
-      database: process.env.DATABASE_NAME || 'alaqsyar',
-      autoLoadEntities: true,
-      synchronize: false, // Set to false in production
-      entities: [Registration],
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
-    RegistrationsModule,
-    DatabaseModule,
-    TypeOrmModule.forFeature([Registration]),
+    TypeOrmModule.forRootAsync({
+      useFactory: async (configService: ConfigService) => {
+        const databaseUrl = configService.get<string>('DATABASE_URL');
+        const dbConfig = parse(databaseUrl);
+
+        return {
+          type: 'postgres',
+          host: dbConfig.host,
+          port: parseInt(dbConfig.port || '5432', 10),
+          username: dbConfig.user,
+          password: dbConfig.password,
+          database: dbConfig.database,
+          autoLoadEntities: true,
+          synchronize: true,
+        };
+      },
+      inject: [ConfigService],
+    }),
   ],
 })
 export class AppModule {}

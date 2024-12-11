@@ -31,6 +31,7 @@ export class RegistrationsController {
 
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<Registration> {
+
     return await prisma.registration.delete({ where: { id } });
   }
 }

@@ -20,20 +20,20 @@ export class RegistrationsService {
     return await this.getAllRegistrations();
   }
 
-  async getRegistrationById(id: number): Promise<Registration> {
-    if (!id || typeof id !== 'number') {
+  async getRegistrationById(id: BigInt): Promise<Registration> {
+    if (!id || typeof id !== 'bigint') {
       throw new Error('ID is required');
     }
     return await this.getRegistrationById(id)
   }
 
-  async updateRegistration(id: number, data: any) {
-    if (!id || typeof id !== 'number' && data === null || data === undefined) {
+  async updateRegistration(id: BigInt, data: any) {
+    if (!id || typeof id !== 'bigint' && data === null || data === undefined) {
       throw new Error('ID is required');
     }
     return await this.updateRegistration(id, data);
   }
-  async deleteRegistration(id: number) {
+  async deleteRegistration(id: BigInt) {
     if (!id || typeof id !== 'number') {
       throw new Error('ID is required');
     }
