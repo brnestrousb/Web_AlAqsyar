@@ -2,9 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { parse } from 'pg-connection-string';
+import { UserModule } from './authentication/user/user.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
+    UserModule,
+    AdminModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),

@@ -6,31 +6,41 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class UserService {
-  async createUser(email: string, password: string) {
+
+    async createAdmin(email: string, password: string) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        return prisma.user.create({
+            data: {
+            email,
+            password: hashedPassword,
+            },
+        });
+    }
+    async createUser(email: string, password: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
     return await prisma.user.create({
-      data: {
+        data: {
         email,
         password: hashedPassword,
-      },
+        },
     });
-  }
+    }
 
-  async findUserByEmail(email: string) {
+    async findUserByEmail(email: string) {
     const user = await prisma.user.findUnique({
-      where: { email },
+        where: { email },
     });
     if (!user) {
-      throw new NotFoundException(`User with email ${email} not found`);
+        throw new NotFoundException(`User with email ${email} not found`);
     }
     return user;
-  }
+    }
 
-  async validateUser(email: string, password: string) {
+    async validateUser(email: string, password: string) {
     const user = await this.findUserByEmail(email);
     if (user && (await bcrypt.compare(password, user.password))) {
-      return user;
+        return user;
     }
     return null;
-  }
+    }
 }
